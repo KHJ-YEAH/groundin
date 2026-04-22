@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)file:///C:/Users/hdec/Downloads/high5_v2_3.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GROUND IN : HIGH-5 프로그램 기획 보고서</title>
+<link href="./GROUND IN _ HIGH-5 프로그램 기획 보고서_files/css2" rel="stylesheet">
+<style>
+:root {
+  --navy:  #08111F;
+  --navy2: #0F1E35;
+  --navy3: #1E3554;
+  --gold:  #F0A500;
+  --gold2: #FFD166;
+  --m1c:#3B82F6; --m1l:#EFF6FF; --m1b:#1D4ED8; --m1mid:#93C5FD;
+  --m2c:#8B5CF6; --m2l:#F5F3FF; --m2b:#6D28D9; --m2mid:#C4B5FD;
+  --m3c:#F59E0B; --m3l:#FFFBEB; --m3b:#B45309; --m3mid:#FCD34D;
+  --m4c:#10B981; --m4l:#ECFDF5; --m4b:#047857; --m4mid:#6EE7B7;
+  --m5c:#EF4444; --m5l:#FEF2F2; --m5b:#B91C1C; --m5mid:#FCA5A5;
+  --dec:#64748B; --decl:#F8FAFC;
+  --bg:#F1F5F9; --card:#FFFFFF; --text:#0F172A; --sub:#475569; --muted:#94A3B8; --border:#E2E8F0;
+  --sw:268px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:15px}
+
+/* SIDEBAR */
+.sidebar{width:var(--sw);background:var(--navy);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:200;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
+.sb-logo{padding:28px 22px 20px}
+.sb-badge{font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);opacity:.7;margin-bottom:6px}
+.sb-title{font-size:20px;font-weight:900;color:#fff;line-height:1.2}
+.sb-title em{color:var(--gold);font-style:normal}
+.sb-divider{height:1px;background:rgba(255,255,255,.07);margin:0 22px 14px}
+.sb-section{padding:8px 22px 4px;font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.25);text-transform:uppercase}
+.sb-link{display:flex;align-items:center;gap:9px;padding:9px 22px;color:rgba(255,255,255,.6);font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;text-decoration:none;border-left:3px solid transparent}
+.sb-link:hover,.sb-link.on{color:#fff;background:rgba(255,255,255,.06);border-left-color:var(--gold)}
+.sb-link .ico{font-size:14px;opacity:.7;flex-shrink:0}
+.sb-month{display:flex;align-items:center;gap:8px;padding:7px 22px 7px 38px;color:rgba(255,255,255,.45);font-size:12px;cursor:pointer;transition:all .18s;border-left:3px solid transparent}
+.sb-month:hover,.sb-month.on{color:rgba(255,255,255,.85);background:rgba(255,255,255,.04);border-left-color:var(--gold)}
+.sb-month .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sb-footer{margin-top:auto;padding:14px 22px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(255,255,255,.2);line-height:1.6}
+
+/* MAIN */
+.main{margin-left:var(--sw);flex:1;min-height:100vh}
+.content{padding:36px 44px 80px;max-width:1060px}
+
+/* HERO */
+.hero{background:var(--navy);border-radius:20px;padding:48px 48px 40px;margin-bottom:28px;position:relative;overflow:hidden;animation:fadeUp .5s ease both}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(240,165,0,.11) 0%,transparent 70%)}
+.hero::after{content:'HIGH-5';font-family:'Bebas Neue',sans-serif;font-size:220px;position:absolute;right:-10px;bottom:-36px;color:rgba(255,255,255,.022);line-height:1;pointer-events:none;letter-spacing:-4px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(240,165,0,.12);border:1px solid rgba(240,165,0,.25);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2.5px;padding:5px 14px;border-radius:999px;margin-bottom:18px;text-transform:uppercase}
+.hero-badge::before{content:'●';font-size:7px;animation:pulse 2s infinite}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:58px;color:#fff;letter-spacing:1px;line-height:1.05;margin-bottom:6px}
+.hero-title span{color:var(--gold)}
+.hero-sub-title{font-size:18px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:10px}
+.hero-desc{font-size:14px;color:rgba(255,255,255,.45);line-height:1.9;max-width:580px;margin-bottom:28px}
+.hero-stats{display:flex;gap:10px;flex-wrap:wrap}
+.hs{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 22px;text-align:center;min-width:108px}
+.hs-val{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold);letter-spacing:1px}
+.hs-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* SECTION TITLE */
+.sec-title{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-main-title{font-size:22px;font-weight:900;color:var(--text);margin-bottom:4px}
+
+/* PURPOSE - horizontal layout */
+.purpose-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.p-card{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:20px 22px;transition:box-shadow .2s}
+.p-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.07)}
+.p-top{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.p-icon{font-size:26px;flex-shrink:0}
+.p-title{font-size:16px;font-weight:800;color:var(--text)}
+.p-desc{font-size:13.5px;color:var(--sub);line-height:1.75;padding-left:38px}
+
+/* OVERVIEW */
+.overview-card{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:12px}
+.ov-grid{display:grid;grid-template-columns:1fr 1fr}
+.ov-row{display:flex;align-items:flex-start;gap:0;padding:13px 22px;border-bottom:1px solid var(--border);font-size:14px}
+.ov-row:nth-child(even){border-left:1px solid var(--border)}
+.ov-row:last-child,.ov-row:nth-last-child(2):nth-child(odd){border-bottom:none}
+.ov-key{font-weight:800;color:var(--text);min-width:64px;flex-shrink:0;font-size:13.5px}
+.ov-val{color:var(--sub);line-height:1.65;font-size:13.5px}
+.ov-val strong{color:var(--text);font-weight:700}
+
+/* TIMELINE */
+.tl-wrap{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:28px 32px;margin-bottom:12px}
+.tl-sub{font-size:13px;color:var(--muted);margin-bottom:22px}
+.tl-track{display:flex;align-items:flex-start;gap:0;position:relative}
+.tl-track::before{content:'';position:absolute;top:22px;left:20px;right:20px;height:2px;background:var(--border);z-index:0}
+.tl-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;cursor:pointer;padding:0 4px}
+.tl-item:hover .tl-dot{transform:scale(1.12)}
+.tl-dot{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;margin-bottom:10px;transition:transform .2s;border:3px solid var(--bg);flex-shrink:0}
+.tl-name{font-size:13.5px;font-weight:800;text-align:center;white-space:nowrap;margin-bottom:3px}
+.tl-period{font-size:12px;color:var(--muted);text-align:center;font-weight:500}
+
+/* SPECIAL - horizontal header */
+.special-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.sp-card{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:20px 20px 18px;overflow:hidden}
+.sp-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.sp-icon{font-size:26px;flex-shrink:0}
+.sp-title{font-size:15px;font-weight:800;color:var(--text)}
+.sp-desc{font-size:13px;color:var(--sub);line-height:1.7;margin-bottom:12px}
+.sp-items{display:flex;flex-direction:column;gap:5px}
+.sp-item{font-size:13px;color:var(--text);display:flex;align-items:baseline;gap:8px;background:var(--bg);border-radius:7px;padding:7px 10px}
+.sp-item-key{font-weight:700;color:var(--muted);font-size:12px;min-width:90px;flex-shrink:0}
+.sp-item-val{color:var(--sub);font-size:12.5px}
+
+/* SCHEDULE TABLE - week vertical */
+.sch-wrap{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:12px}
+.sch-table{width:100%;border-collapse:collapse;font-size:14px}
+.sch-table th{background:var(--navy);color:rgba(255,255,255,.75);font-weight:700;padding:13px 18px;text-align:left;font-size:12px;letter-spacing:.5px}
+.sch-table td{padding:14px 18px;border-bottom:1px solid var(--border);vertical-align:top}
+.sch-table tr:last-child td{border-bottom:none}
+.sch-table tr:hover td{background:#FAFBFC}
+.sch-m-badge{display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;padding:3px 11px;border-radius:999px;white-space:nowrap}
+.sch-month-name{font-weight:800;font-size:14px;margin-bottom:2px}
+.sch-period{font-size:12px;color:var(--muted)}
+.week-steps{display:flex;flex-direction:column;gap:5px}
+.ws{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--sub);line-height:1.55}
+.ws-num{background:var(--navy3);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0;margin-top:1px;letter-spacing:.5px}
+.ws-text{color:var(--sub)}
+.ws-text strong{color:var(--text);font-weight:700}
+
+/* MONTH CARDS */
+.months-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.month-card{background:var(--card);border-radius:16px;border:1px solid var(--border);overflow:hidden;transition:box-shadow .22s,transform .22s}
+.month-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.09);transform:translateY(-2px)}
+.mc-bar{height:5px}
+.mc-body{padding:22px 22px 18px}
+.mc-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mc-badge{font-size:10px;font-weight:700;letter-spacing:1.5px;padding:3px 11px;border-radius:999px}
+.mc-period{font-size:12px;color:var(--muted);margin-left:auto;font-weight:600}
+.mc-title{font-size:22px;font-weight:900;margin-bottom:6px}
+.mc-keymsg{font-size:13px;color:var(--sub);background:var(--bg);border-radius:8px;padding:10px 13px;margin-bottom:14px;line-height:1.7;border-left:3px solid var(--border)}
+.mc-weeks{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.mc-chip{font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:7px;border:1px solid var(--border)}
+.mc-btn{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:9px;border:none;cursor:pointer;color:#fff;transition:all .18s;font-family:'Noto Sans KR',sans-serif}
+.mc-btn:hover{filter:brightness(1.08)}
+
+/* DETAIL */
+.detail-wrapper{grid-column:1/-1}
+.detail-panel{display:none;background:var(--card);border-radius:16px;border:1px solid var(--border);overflow:hidden;animation:fadeUp .28s ease}
+.detail-panel.open{display:block}
+.dp-header{padding:24px 28px 0}
+.dp-month-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--muted);margin-bottom:5px;text-transform:uppercase}
+.dp-title{font-size:24px;font-weight:900;margin-bottom:8px}
+.dp-keymsg{font-size:14px;color:var(--sub);background:var(--bg);border-radius:10px;padding:12px 16px;margin-bottom:4px;line-height:1.75;border-left:4px solid var(--border)}
+.dp-weeks{border-top:1px solid var(--border);margin-top:18px}
+.dp-week{border-bottom:1px solid var(--border)}
+.dp-week:last-child{border-bottom:none}
+.dpw-header{display:flex;align-items:center;gap:12px;padding:15px 28px;cursor:pointer;transition:background .15s;user-select:none}
+.dpw-header:hover{background:var(--bg)}
+.dpw-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0}
+.dpw-title{font-size:15px;font-weight:800;flex:1}
+.dpw-subtitle{font-size:12px;color:var(--muted);margin-left:6px}
+.dpw-toggle{font-size:18px;color:var(--muted);transition:transform .22s;margin-left:auto}
+.dpw-header.open .dpw-toggle{transform:rotate(180deg)}
+.dpw-body{display:none;padding:0 28px 22px 72px;animation:fadeUp .22s ease}
+.dpw-body.open{display:block}
+.dpw-desc{font-size:13.5px;color:var(--sub);line-height:1.85;margin-bottom:14px}
+.dpw-steps{display:flex;flex-direction:column;gap:7px}
+.dpw-step{display:flex;align-items:flex-start;gap:10px;background:var(--bg);border-radius:9px;padding:11px 14px;font-size:13.5px;color:var(--sub);line-height:1.7}
+.dpw-step::before{content:attr(data-n);background:var(--text);color:#fff;font-size:9px;font-weight:800;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.dpw-highlight{background:linear-gradient(135deg,rgba(240,165,0,.08),rgba(240,165,0,.03));border:1px solid rgba(240,165,0,.2);border-radius:9px;padding:12px 14px;font-size:13.5px;color:var(--sub);line-height:1.8;margin-top:10px;display:flex;gap:8px}
+.dpw-highlight::before{content:'✦';color:var(--gold);flex-shrink:0;font-size:13px}
+.dp-exec-row{padding:16px 28px;background:var(--bg);border-top:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.dp-exec-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:10px 22px;border-radius:9px;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;background:var(--navy);color:#fff;transition:all .18s}
+.dp-exec-btn:hover{background:var(--navy3);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.dp-exec-note{font-size:12px;color:var(--muted)}
+
+/* WRAPUP */
+.wrapup-card{background:var(--navy);border-radius:16px;padding:32px 36px;color:#fff;position:relative;overflow:hidden}
+.wrapup-card::before{content:'12';font-family:'Bebas Neue',sans-serif;font-size:200px;position:absolute;right:-10px;bottom:-28px;color:rgba(255,255,255,.04);line-height:1}
+.wu-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase}
+.wu-title{font-size:26px;font-weight:900;margin-bottom:10px}
+.wu-desc{font-size:14px;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:20px}
+.wu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px}
+.wu-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:10px 14px;font-size:13.5px;color:rgba(255,255,255,.7)}
+.wu-item span{color:var(--gold2);font-weight:700}
+.wu-exec-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:11px 24px;border-radius:9px;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-family:'Noto Sans KR',sans-serif;background:rgba(255,255,255,.08);color:#fff;transition:all .18s}
+.wu-exec-btn:hover{background:rgba(255,255,255,.15)}
+
+/* UTILS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.section-block{animation:fadeUp .5s ease both}
+.mt{margin-bottom:28px}
+.main-section{scroll-margin-top:24px}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-badge">Program Report · 2026</div>
+    <div class="sb-title">GROUND IN<br><em>HIGH-5</em></div>
+  </div>
+  <div class="sb-divider"></div>
+  <nav style="padding-bottom:16px">
+    <div class="sb-section">Overview</div>
+    <a class="sb-link on" onclick="goTo(&#39;intro&#39;)"><span class="ico">◎</span>프로그램 소개</a>
+    <a class="sb-link" onclick="goTo(&#39;purpose&#39;)"><span class="ico">◈</span>목적 및 개요</a>
+    <a class="sb-link" onclick="goTo(&#39;timeline&#39;)"><span class="ico">◷</span>전체 일정</a>
+    <a class="sb-link" onclick="goTo(&#39;special&#39;)"><span class="ico">★</span>핵심 운영 장치</a>
+    <a class="sb-link" onclick="goTo(&#39;schedule&#39;)"><span class="ico">☰</span>월별 세부 일정</a>
+    <div class="sb-section" style="margin-top:10px">월별 프로그램</div>
+    <a class="sb-link" onclick="goTo(&#39;months&#39;)"><span class="ico">◉</span>월별 프로그램 전체</a>
+    <a class="sb-month" onclick="openMonth(&#39;m1&#39;)"><span class="dot" style="background:var(--m1c)"></span>M1 · 소통과 인정</a>
+    <a class="sb-month" onclick="openMonth(&#39;m2&#39;)"><span class="dot" style="background:var(--m2c)"></span>M2 · 존중과 배려</a>
+    <a class="sb-month" onclick="openMonth(&#39;m3&#39;)"><span class="dot" style="background:var(--m3c)"></span>M3 · 칭찬과 격려</a>
+    <a class="sb-month" onclick="openMonth(&#39;m4&#39;)"><span class="dot" style="background:var(--m4c)"></span>M4 · 성장과 육성</a>
+    <a class="sb-month" onclick="openMonth(&#39;m5&#39;)"><span class="dot" style="background:var(--m5c)"></span>M5 · 협업과 시너지</a>
+    <a class="sb-month" onclick="goTo(&#39;wrapup&#39;)"><span class="dot" style="background:var(--dec)"></span>12월 · 랩업</a>
+  </nav>
+  <div class="sb-footer">조직문화팀 · 2026<br>GROUND IN : HIGH-5 기획안</div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+<div class="content">
+
+<!-- HERO -->
+<div class="hero main-section mt" id="intro">
+  <div class="hero-badge">조직문화 프로그램 기획안</div>
+  <div class="hero-title" style="white-space:nowrap">GROUND IN : <span>HIGH-5</span></div>
+  <div class="hero-sub-title">5대 조직문화 지향점 내재화 프로그램</div>
+  <div class="hero-desc" style="white-space:nowrap">전 임직원이 5가지 조직문화 지향점을 매월 하나씩 직접 경험·실천하며, 팀별 그라운드룰을 도출해 일상에 정착시키는 5개월간의 여정입니다.</div>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-val">5</div><div class="hs-label">지향점 영역</div></div>
+    <div class="hs"><div class="hs-val">5개월</div><div class="hs-label">운영 기간</div></div>
+    <div class="hs"><div class="hs-val">7~11월</div><div class="hs-label">시행 시기</div></div>
+    <div class="hs"><div class="hs-val">전사</div><div class="hs-label">참여 대상</div></div>
+    <div class="hs"><div class="hs-val">4 WEEK</div><div class="hs-label">월별 구성</div></div>
+  </div>
+</div>
+
+<!-- PURPOSE -->
+<section class="main-section section-block mt" id="purpose">
+  <div class="sec-title">목적 및 개요</div>
+  <div class="purpose-grid">
+    <div class="p-card">
+      <div class="p-top"><div class="p-icon">🎯</div><div class="p-title">프로그램 목적</div></div>
+      <div class="p-desc">반복적 노출과 <strong>스스로 학습</strong>을 통한 5대 지향점 내재화.<br>리더 메시지 기점으로 구성원 전반에 확산하고 실천 세미나로 일상에 정착.</div>
+    </div>
+    <div class="p-card">
+      <div class="p-top"><div class="p-icon">🔄</div><div class="p-title">운영 방식</div></div>
+      <div class="p-desc"><strong>1개 영역 × 1개월</strong>, 총 5개월 운영.<br>매월 팀별 그라운드룰을 도출하고 12월 랩업으로 전체 여정 완성.</div>
+    </div>
+    <div class="p-card">
+      <div class="p-top"><div class="p-icon">📐</div><div class="p-title">월별 4주 구조</div></div>
+      <div class="p-desc" style="padding-left:38px;white-space:nowrap;font-size:12.5px"><strong>W1 리더 스토리 → W2 팀 릴레이 → W3 실천 미션 → W4 세미나·정착</strong><br><span style="white-space:normal;font-size:13px">각 단계가 다음 단계의 기반이 되는 연계 구조.</span></div>
+    </div>
+    <div class="p-card">
+      <div class="p-top"><div class="p-icon">🏆</div><div class="p-title">기대 효과</div></div>
+      <div class="p-desc">단순 교육이 아닌 <strong>직접 참여·경험·실천</strong>으로 문화 체화.<br>팀별 그라운드룰이 누적되어 지속 가능한 조직문화 자산으로 남음.</div>
+    </div>
+  </div>
+  <div class="overview-card">
+    <div class="ov-grid">
+      <div class="ov-row"><span class="ov-key">대상</span><span class="ov-val">전 임직원 (본사·현장·임원 포함)</span></div>
+      <div class="ov-row"><span class="ov-key">기간</span><span class="ov-val"><strong>2026년 7월 ~ 12월</strong> (5개월 + 12월 랩업)</span></div>
+      <div class="ov-row"><span class="ov-key">방식</span><span class="ov-val">온라인 릴레이 + 팀 자체 오프라인 세미나</span></div>
+      <div class="ov-row"><span class="ov-key">플랫폼</span><span class="ov-val">그룹웨어 연동 전용 플랫폼 + 카카오톡 알림</span></div>
+      <div class="ov-row" style="grid-column:1/-1"><span class="ov-key">5대 영역</span><span class="ov-val"><strong>소통과 인정 → 존중과 배려 → 칭찬과 격려 → 성장과 육성 → 협업과 시너지</strong></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="main-section section-block mt" id="timeline">
+  <div class="sec-title">전체 일정</div>
+  <div class="tl-wrap">
+    <div class="tl-sub">2026년 7월 ~ 12월 전체 로드맵 · 클릭하면 해당 프로그램으로 이동합니다</div>
+    <div class="tl-track">
+      <div class="tl-item" onclick="openMonth(&#39;m1&#39;);goTo(&#39;months&#39;)">
+        <div class="tl-dot" style="background:var(--m1c)">M1</div>
+        <div class="tl-name" style="color:var(--m1c)">소통과 인정</div>
+        <div class="tl-period">7월</div>
+      </div>
+      <div class="tl-item" onclick="openMonth(&#39;m2&#39;);goTo(&#39;months&#39;)">
+        <div class="tl-dot" style="background:var(--m2c)">M2</div>
+        <div class="tl-name" style="color:var(--m2c)">존중과 배려</div>
+        <div class="tl-period">8월</div>
+      </div>
+      <div class="tl-item" onclick="openMonth(&#39;m3&#39;);goTo(&#39;months&#39;)">
+        <div class="tl-dot" style="background:var(--m3c)">M3</div>
+        <div class="tl-name" style="color:var(--m3c)">칭찬과 격려</div>
+        <div class="tl-period">9월</div>
+      </div>
+      <div class="tl-item" onclick="openMonth(&#39;m4&#39;);goTo(&#39;months&#39;)">
+        <div class="tl-dot" style="background:var(--m4c)">M4</div>
+        <div class="tl-name" style="color:var(--m4c)">성장과 육성</div>
+        <div class="tl-period">10월</div>
+      </div>
+      <div class="tl-item" onclick="openMonth(&#39;m5&#39;);goTo(&#39;months&#39;)">
+        <div class="tl-dot" style="background:var(--m5c)">M5</div>
+        <div class="tl-name" style="color:var(--m5c)">협업과 시너지</div>
+        <div class="tl-period">11월</div>
+      </div>
+      <div class="tl-item" onclick="goTo(&#39;wrapup&#39;)">
+        <div class="tl-dot" style="background:var(--dec)">🎊</div>
+        <div class="tl-name" style="color:var(--dec)">랩업</div>
+        <div class="tl-period">12월</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL -->
+<section class="main-section section-block mt" id="special">
+  <div class="sec-title">핵심 운영 장치</div>
+  <div class="special-grid">
+    <div class="sp-card">
+      <div class="sp-top"><div class="sp-icon">🪙</div><div class="sp-title">포인트 &amp; 보상</div></div>
+      <div class="sp-desc">행동 → 즉각 보상 구조로 자발적 참여 유도.<br>개인 포인트·팀 포인트 분리 운영.</div>
+      <div class="sp-items">
+        <div class="sp-item"><span class="sp-item-key">메시지 작성</span><span class="sp-item-val">완료 시 <strong>+50P</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">팀원 공감</span><span class="sp-item-val">누르기 <strong>+5P</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">7일 스트릭</span><span class="sp-item-val">연속 달성 <strong>+100P</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">팀 전원 완료</span><span class="sp-item-val">보너스 <strong>+200P</strong></span></div>
+      </div>
+    </div>
+    <div class="sp-card">
+      <div class="sp-top"><div class="sp-icon">📊</div><div class="sp-title">실시간 랭킹</div></div>
+      <div class="sp-desc">팀별 종합 점수 매일 오전 9시 전사 공개.<br>경쟁심을 자연스럽게 유발.</div>
+      <div class="sp-items">
+        <div class="sp-item"><span class="sp-item-key">참여율</span><span class="sp-item-val">팀 릴레이 완료율 <strong>40%</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">메시지 품질</span><span class="sp-item-val">평균 공감수 <strong>30%</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">상호 댓글</span><span class="sp-item-val">팀 내 활성도 <strong>20%</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">조기 완료</span><span class="sp-item-val">기한 내 가점 <strong>10%</strong></span></div>
+      </div>
+    </div>
+    <div class="sp-card">
+      <div class="sp-top"><div class="sp-icon">✅</div><div class="sp-title">일일 미션</div></div>
+      <div class="sp-desc">매일 오전 8시 초기화. 5일 연속 스트릭 시<br>보너스 지급으로 꾸준한 접속 유도.</div>
+      <div class="sp-items">
+        <div class="sp-item"><span class="sp-item-key">리더 메시지</span><span class="sp-item-val">읽기 완료 <strong>+10P</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">공감 1회</span><span class="sp-item-val">팀원 메시지 <strong>+5P</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">주간 미션</span><span class="sp-item-val">참여하기 <strong>+20P</strong></span></div>
+        <div class="sp-item"><span class="sp-item-key">랭킹 확인</span><span class="sp-item-val">전사 랭킹 보기 <strong>+5P</strong></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE TABLE -->
+<section class="main-section section-block mt" id="schedule">
+  <div class="sec-title">월별 세부 일정</div>
+  <div class="sch-wrap">
+    <table class="sch-table">
+      <thead>
+        <tr>
+          <th style="width:130px">영역</th>
+          <th style="width:100px">기간</th>
+          <th style="width:260px">키 메시지</th>
+          <th>주차별 실행 내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="sch-month-name" style="color:var(--m1c)">소통과 인정</div><span class="sch-m-badge" style="background:var(--m1l);color:var(--m1b);border:1px solid #BFDBFE;margin-top:4px;display:inline-flex">Month 1</span></td>
+          <td class="sch-period" style="font-weight:700;font-size:14px">2026년<br>7월</td>
+          <td style="font-size:13.5px;color:var(--sub);line-height:1.7">폭넓게 정보를 공유하고 생각 차이를 인정합니다</td>
+          <td>
+            <div class="week-steps">
+              <div class="ws"><span class="ws-num" style="background:var(--m1c)">W1</span><span class="ws-text"><strong>리더 밸런스 스토리</strong> — 소통 철학 선택 + 이유 작성 · 리더별 공개</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m1c)">W2</span><span class="ws-text"><strong>팀 개선팁 릴레이</strong> — 팀 그라운드룰 후보 릴레이 작성</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m1c)">W3</span><span class="ws-text"><strong>인정 스티커</strong> — 10종 스티커로 팀원 간 공개 인정</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m1c)">W4</span><span class="ws-text"><strong>팀 세미나</strong> — Best of me · 스티커 토론 · 그라운드룰 1개 확정</span></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="sch-month-name" style="color:var(--m2c)">존중과 배려</div><span class="sch-m-badge" style="background:var(--m2l);color:var(--m2b);border:1px solid #DDD6FE;margin-top:4px;display:inline-flex">Month 2</span></td>
+          <td class="sch-period" style="font-weight:700;font-size:14px">2026년<br>8월</td>
+          <td style="font-size:13.5px;color:var(--sub);line-height:1.7">동등하게 존중하고, 서로의 상황을 배려합니다</td>
+          <td>
+            <div class="week-steps">
+              <div class="ws"><span class="ws-num" style="background:var(--m2c)">W1</span><span class="ws-text"><strong>존중·배려 지수 측정</strong> — 5점 척도 투표 + 나의 존중유형 테스트</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m2c)">W2</span><span class="ws-text"><strong>팀 존중 지도 완성</strong> — 유형 카드 공개 · 육각형 차트 · 감사 릴레이</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m2c)">W3</span><span class="ws-text"><strong>리더 피드백 메시지</strong> — 지수 결과 기반 리더 방향 제시</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m2c)">W4</span><span class="ws-text"><strong>리더 감사 릴레이</strong> — "OOO 덕분에" 편지 형식 공개</span></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="sch-month-name" style="color:var(--m3c)">칭찬과 격려</div><span class="sch-m-badge" style="background:var(--m3l);color:var(--m3b);border:1px solid #FDE68A;margin-top:4px;display:inline-flex">Month 3</span></td>
+          <td class="sch-period" style="font-weight:700;font-size:14px">2026년<br>9월</td>
+          <td style="font-size:13.5px;color:var(--sub);line-height:1.7">실패를 격려하며 작은 성과와 노력도 칭찬합니다</td>
+          <td>
+            <div class="week-steps">
+              <div class="ws"><span class="ws-num" style="background:var(--m3c)">W1</span><span class="ws-text"><strong>리더 에피소드</strong> — 최고의 칭찬 이야기 · 못 한 격려 전하기</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m3c)">W2</span><span class="ws-text"><strong>칭찬·격려 릴레이</strong> — 전원 주인공 · 칭찬 타임캡슐 저장</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m3c)">W3</span><span class="ws-text"><strong>숨은 기여 찾기</strong> — 익명 투표 → MVP 공개 → 축하 댓글</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m3c)">W4</span><span class="ws-text"><strong>타임캡슐 봉인 + 기여자 보상</strong> — 12월 공개 예약 · 공개 선물 증정</span></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="sch-month-name" style="color:var(--m4c)">성장과 육성</div><span class="sch-m-badge" style="background:var(--m4l);color:var(--m4b);border:1px solid #A7F3D0;margin-top:4px;display:inline-flex">Month 4</span></td>
+          <td class="sch-period" style="font-weight:700;font-size:14px">2026년<br>10월</td>
+          <td style="font-size:13.5px;color:var(--sub);line-height:1.7">회사와 함께 구성원도 성장합니다</td>
+          <td>
+            <div class="week-steps">
+              <div class="ws"><span class="ws-num" style="background:var(--m4c)">W1</span><span class="ws-text"><strong>리더 성장 루트</strong> — 성장 경험·추천 자료 메시지 공개</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m4c)">W2</span><span class="ws-text"><strong>성장 목표 릴레이</strong> — "올해 나의 목표" 익명 릴레이 · 성장 타임캡슐 저장</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m4c)">W3</span><span class="ws-text"><strong>베스트 지식 공유</strong> — "나는 OOO에 자신있습니다" · 함께 알고 싶어요 투표</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m4c)">W4</span><span class="ws-text"><strong>베스트 지식 세미나</strong> — 당사자 주도 팀 내 공유 · 다수 발표 가능</span></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="sch-month-name" style="color:var(--m5c)">협업과 시너지</div><span class="sch-m-badge" style="background:var(--m5l);color:var(--m5b);border:1px solid #FECACA;margin-top:4px;display:inline-flex">Month 5</span></td>
+          <td class="sch-period" style="font-weight:700;font-size:14px">2026년<br>11월</td>
+          <td style="font-size:13.5px;color:var(--sub);line-height:1.7">함께 더 큰 성과를 만듭니다</td>
+          <td>
+            <div class="week-steps">
+              <div class="ws"><span class="ws-num" style="background:var(--m5c)">W1</span><span class="ws-text"><strong>리더 협업 스토리</strong> — 협업 성공 사례 · 시너지 노하우 공유</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m5c)">W2</span><span class="ws-text"><strong>위기 스토리텔링</strong> — 2가지 상황 중 선택 · 팀 릴레이 이야기 완성</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m5c)">W3</span><span class="ws-text"><strong>협업 플러팅</strong> — "함께 하고 싶은 팀" 전사 실시간 랭킹</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--m5c)">W4</span><span class="ws-text"><strong>팀 매칭 &amp; 런치</strong> — 상호 매칭 공개 · 팀장 간 점심 일정 조율</span></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="opacity:.75">
+          <td><div class="sch-month-name" style="color:var(--dec)">랩업</div><span class="sch-m-badge" style="background:var(--decl);color:var(--dec);border:1px solid #CBD5E1;margin-top:4px;display:inline-flex">12월</span></td>
+          <td class="sch-period" style="font-weight:700;font-size:14px">2026년<br>12월</td>
+          <td style="font-size:13.5px;color:var(--sub);line-height:1.7">5개월 여정 총결산 · 타임캡슐 개봉 · 우수팀 시상</td>
+          <td>
+            <div class="week-steps">
+              <div class="ws"><span class="ws-num" style="background:var(--dec)">①</span><span class="ws-text">전체 대시보드 공개 · 5대 영역 전사 실천율 발표 · 우수팀 시상</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--dec)">②</span><span class="ws-text">칭찬 타임캡슐 &amp; 성장 타임캡슐 동시 개봉 이벤트</span></div>
+              <div class="ws"><span class="ws-num" style="background:var(--dec)">③</span><span class="ws-text">5개월 사진 파노라마 상영 · 전사 소감 댓글 공유</span></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- MONTHS DETAIL -->
+<section class="main-section section-block mt" id="months">
+  <div class="sec-title">월별 프로그램 상세</div>
+  <div class="months-grid">
+
+    <!-- M1 card -->
+    <div class="month-card">
+      <div class="mc-bar" style="background:var(--m1c)"></div>
+      <div class="mc-body">
+        <div class="mc-top">
+          <span class="mc-badge" style="background:var(--m1l);color:var(--m1b);border:1px solid #BFDBFE">MONTH 1</span>
+          <span class="mc-period">7월</span>
+        </div>
+        <div class="mc-title" style="color:var(--m1c)">소통과 인정</div>
+        <div class="mc-keymsg" style="border-left-color:var(--m1c)">"폭넓게 정보를 공유하고 생각 차이를 인정합니다"</div>
+        <div class="mc-weeks">
+          <span class="mc-chip" style="background:var(--m1l);color:var(--m1b);border-color:#BFDBFE">W1 리더 스토리</span>
+          <span class="mc-chip" style="background:var(--m1l);color:var(--m1b);border-color:#BFDBFE">W2 팀 릴레이</span>
+          <span class="mc-chip" style="background:var(--m1l);color:var(--m1b);border-color:#BFDBFE">W3 인정 스티커</span>
+          <span class="mc-chip" style="background:var(--m1l);color:var(--m1b);border-color:#BFDBFE">W4 팀 세미나</span>
+        </div>
+        <button class="mc-btn" style="background:var(--m1c)" onclick="toggleDetail(&#39;m1&#39;)"><span id="lbl-m1">상세 내용 보기 ↓</span></button>
+      </div>
+    </div>
+
+    <!-- M2 card -->
+    <div class="month-card">
+      <div class="mc-bar" style="background:var(--m2c)"></div>
+      <div class="mc-body">
+        <div class="mc-top">
+          <span class="mc-badge" style="background:var(--m2l);color:var(--m2b);border:1px solid #DDD6FE">MONTH 2</span>
+          <span class="mc-period">8월</span>
+        </div>
+        <div class="mc-title" style="color:var(--m2c)">존중과 배려</div>
+        <div class="mc-keymsg" style="border-left-color:var(--m2c)">"동등하게 존중하고, 서로의 상황을 배려합니다"</div>
+        <div class="mc-weeks">
+          <span class="mc-chip" style="background:var(--m2l);color:var(--m2b);border-color:#DDD6FE">W1~2 존중 지수</span>
+          <span class="mc-chip" style="background:var(--m2l);color:var(--m2b);border-color:#DDD6FE">W1~2 유형 테스트</span>
+          <span class="mc-chip" style="background:var(--m2l);color:var(--m2b);border-color:#DDD6FE">W2~4 리더 피드백</span>
+        </div>
+        <button class="mc-btn" style="background:var(--m2c)" onclick="toggleDetail(&#39;m2&#39;)"><span id="lbl-m2">상세 내용 보기 ↓</span></button>
+      </div>
+    </div>
+
+    <!-- DETAIL M1 -->
+    <div class="detail-wrapper" id="detail-m1">
+      <div class="detail-panel" id="dp-m1">
+        <div class="dp-header">
+          <div class="dp-month-label">Month 1 · 7월</div>
+          <div class="dp-title" style="color:var(--m1c)">소통과 인정</div>
+          <div class="dp-keymsg" style="border-left-color:var(--m1c)">"폭넓게 정보를 공유하고 생각 차이를 인정합니다"</div>
+        </div>
+        <div class="dp-weeks">
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m1c)">1</div>
+              <div class="dpw-title">리더 스토리 — 밸런스 선택</div><div class="dpw-subtitle">소통 철학 공개</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-desc">리더(본부장→실장→팀장)가 2가지 밸런스 질문에 입장을 선택하고 200자 이내로 이유를 작성합니다.</div>
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">밸런스 ① — <strong>"배경·맥락 모두 공유"</strong> vs <strong>"핵심 결론만 전달"</strong> 선택 + 이유 작성</div>
+                <div class="dpw-step" data-n="2">밸런스 ② — <strong>"미확정이어도 빨리 공유"</strong> vs <strong>"명확할 때 정확 보고"</strong> 선택 + 이유 작성</div>
+                <div class="dpw-step" data-n="3">리더 메시지 전 구성원 공개 · 익명 구성원도 동일 질문 참여 가능</div>
+                <div class="dpw-step" data-n="4">각 리더 메시지에 좋아요·댓글 기능 제공 · 결과 실시간 집계</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m1c)">2</div>
+              <div class="dpw-title">팀 개선팁 릴레이</div><div class="dpw-subtitle">그라운드룰 초안 완성</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">팀장이 팀원 1명 지정 → 리더 메시지 기반 팀 실천 룰 1개 작성 → 다음 팀원 지목</div>
+                <div class="dpw-step" data-n="2">릴레이 방식으로 전원 완료 시 전체 익명 공개 + 공감 투표</div>
+                <div class="dpw-step" data-n="3">누적 기록 유지 · 팀 그라운드룰 후보로 활용</div>
+              </div>
+              <div class="dpw-highlight">팀원 많을 경우 15명 내외 그룹 분리 운영 가능</div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m1c)">3</div>
+              <div class="dpw-title">인정 스티커</div><div class="dpw-subtitle">공개 인정 릴레이</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">팀장이 1명 지목 → 지목된 팀원이 나머지 모든 팀원에게 최대 3개 스티커 부착</div>
+                <div class="dpw-step" data-n="2">릴레이로 전원 참여 완료 → 각자 받은 스티커 현황 전체 공개</div>
+              </div>
+              <div class="dpw-highlight">스티커 10종: 든든동료 · 꼼꼼체크 · 분위기메이커 · 아이디어뱅크 · 배울점줍줍 · 당당용기 · 경청의왕 · 함께쭉가자 · 일당백 · 세상편함</div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m1c)">4</div>
+              <div class="dpw-title">팀 세미나 — 그라운드룰 확정</div><div class="dpw-subtitle">오프라인 2시간</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1"><strong>Best of me</strong> 양식 — 팀원 작성 후 세미나 공개, 서로 더 깊이 이해</div>
+                <div class="dpw-step" data-n="2">Week 3 인정 스티커 결과 보며 팀원들이 스티커 이유 설명</div>
+                <div class="dpw-step" data-n="3">Week 2 릴레이 메시지 토론 → <strong>팀 그라운드룰 1가지</strong> 확정</div>
+                <div class="dpw-step" data-n="4">기간·횟수·방식 등 상세 실천 방안 시스템 입력 및 사진 업로드 후 운영팀 회신</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-exec-row">
+          <button class="dp-exec-btn" onclick="alert(&#39;실행 페이지는 별도 URL로 연결됩니다.&#39;)">▶ 실행 페이지 열기</button>
+          <span class="dp-exec-note">실제 프로그램 실행 시 해당 버튼으로 이동합니다</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAIL M2 -->
+    <div class="detail-wrapper" id="detail-m2">
+      <div class="detail-panel" id="dp-m2">
+        <div class="dp-header">
+          <div class="dp-month-label">Month 2 · 8월</div>
+          <div class="dp-title" style="color:var(--m2c)">존중과 배려</div>
+          <div class="dp-keymsg" style="border-left-color:var(--m2c)">"동등하게 존중하고, 서로의 상황을 배려합니다"</div>
+        </div>
+        <div class="dp-weeks">
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m2c)">1~2</div>
+              <div class="dpw-title">존중·배려 지수 + 유형 테스트</div><div class="dpw-subtitle">팀 존중 지도 완성</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">별 5개 척도 평가 ① — <strong>"우리 팀은</strong> 직급·연차 관계없이 존중하는 언어·태도를 유지한다"</div>
+                <div class="dpw-step" data-n="2">별 5개 척도 평가 ② — <strong>"우리 팀은</strong> 구성원의 상황을 고려하며 업무를 진행한다"</div>
+                <div class="dpw-step" data-n="3">투표 결과 → 리더 전달 (Week 2~4 피드백 연계)</div>
+                <div class="dpw-step" data-n="4">존중유형 자가테스트 → 유형 카드 공개 → 팀 육각형 존중 지도 자동 완성</div>
+              </div>
+              <div class="dpw-highlight">"당신 덕분에" 감사 릴레이 동시 진행 — "OOO 덕분에 OOO할 수 있었습니다" 편지 형태 공개</div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m2c)">2~4</div>
+              <div class="dpw-title">리더 피드백 + 감사 릴레이</div><div class="dpw-subtitle">리더 메시지 &amp; 상호 감사</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">본부장→실장→팀장 순 존중·배려 방향 메시지 입력, 전 팀원 열람</div>
+                <div class="dpw-step" data-n="2">실장→팀장 "OOO 덕분에 OOO할 수 있었습니다" 감사 메시지 편지 형태 오픈</div>
+                <div class="dpw-step" data-n="3">팀 전원 감사 릴레이 순환 완성</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-exec-row">
+          <button class="dp-exec-btn" style="background:var(--m2c)" onclick="alert(&#39;실행 페이지는 별도 URL로 연결됩니다.&#39;)">▶ 실행 페이지 열기</button>
+          <span class="dp-exec-note">실제 프로그램 실행 시 해당 버튼으로 이동합니다</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M3 card -->
+    <div class="month-card">
+      <div class="mc-bar" style="background:var(--m3c)"></div>
+      <div class="mc-body">
+        <div class="mc-top">
+          <span class="mc-badge" style="background:var(--m3l);color:var(--m3b);border:1px solid #FDE68A">MONTH 3</span>
+          <span class="mc-period">9월</span>
+        </div>
+        <div class="mc-title" style="color:var(--m3c)">칭찬과 격려</div>
+        <div class="mc-keymsg" style="border-left-color:var(--m3c)">"실패를 격려하며 작은 성과와 노력도 칭찬합니다"</div>
+        <div class="mc-weeks">
+          <span class="mc-chip" style="background:var(--m3l);color:var(--m3b);border-color:#FDE68A">W1 리더 에피소드</span>
+          <span class="mc-chip" style="background:var(--m3l);color:var(--m3b);border-color:#FDE68A">W2 칭찬 릴레이</span>
+          <span class="mc-chip" style="background:var(--m3l);color:var(--m3b);border-color:#FDE68A">W3 숨은 기여 찾기</span>
+          <span class="mc-chip" style="background:var(--m3l);color:var(--m3b);border-color:#FDE68A">W4 타임캡슐</span>
+        </div>
+        <button class="mc-btn" style="background:var(--m3c)" onclick="toggleDetail(&#39;m3&#39;)"><span id="lbl-m3">상세 내용 보기 ↓</span></button>
+      </div>
+    </div>
+
+    <!-- M4 card -->
+    <div class="month-card">
+      <div class="mc-bar" style="background:var(--m4c)"></div>
+      <div class="mc-body">
+        <div class="mc-top">
+          <span class="mc-badge" style="background:var(--m4l);color:var(--m4b);border:1px solid #A7F3D0">MONTH 4</span>
+          <span class="mc-period">10월</span>
+        </div>
+        <div class="mc-title" style="color:var(--m4c)">성장과 육성</div>
+        <div class="mc-keymsg" style="border-left-color:var(--m4c)">"회사와 함께 구성원도 성장합니다"</div>
+        <div class="mc-weeks">
+          <span class="mc-chip" style="background:var(--m4l);color:var(--m4b);border-color:#A7F3D0">W1 리더 성장 루트</span>
+          <span class="mc-chip" style="background:var(--m4l);color:var(--m4b);border-color:#A7F3D0">W2 목표 릴레이</span>
+          <span class="mc-chip" style="background:var(--m4l);color:var(--m4b);border-color:#A7F3D0">W3 베스트 지식</span>
+          <span class="mc-chip" style="background:var(--m4l);color:var(--m4b);border-color:#A7F3D0">W4 지식 세미나</span>
+        </div>
+        <button class="mc-btn" style="background:var(--m4c)" onclick="toggleDetail(&#39;m4&#39;)"><span id="lbl-m4">상세 내용 보기 ↓</span></button>
+      </div>
+    </div>
+
+    <!-- DETAIL M3 -->
+    <div class="detail-wrapper" id="detail-m3">
+      <div class="detail-panel" id="dp-m3">
+        <div class="dp-header">
+          <div class="dp-month-label">Month 3 · 9월</div>
+          <div class="dp-title" style="color:var(--m3c)">칭찬과 격려</div>
+          <div class="dp-keymsg" style="border-left-color:var(--m3c)">"실패를 격려하며 작은 성과와 노력도 칭찬합니다"</div>
+        </div>
+        <div class="dp-weeks">
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m3c)">1</div>
+              <div class="dpw-title">리더 스토리 — 칭찬·격려 에피소드</div><div class="dpw-subtitle">북(Book) 형식 공개</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-desc">리더(본부장→실장→팀장)가 2가지 주제 중 선택하고 200자 이내로 이유를 작성합니다.</div>
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">주제 A — <strong>"내가 받은 최고의 칭찬 이야기"</strong> 실화 작성</div>
+                <div class="dpw-step" data-n="2">주제 B — <strong>"칭찬·격려를 못 했던 이야기"</strong> — 오늘 전합니다</div>
+                <div class="dpw-step" data-n="3">전체 내용 북 형식 구성원 공개 · 좋아요·댓글 기능</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m3c)">2</div>
+              <div class="dpw-title">칭찬·격려 릴레이</div><div class="dpw-subtitle">전원이 주인공</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">팀장이 1명 지정 → 칭찬·격려 한 줄 작성 → 릴레이로 전원 주인공</div>
+                <div class="dpw-step" data-n="2">마지막 팀원은 팀장 칭찬 · 완료 후 이름 제외 전체 공개</div>
+                <div class="dpw-step" data-n="3"><strong>칭찬 타임캡슐</strong>에 자동 저장 → 12월 전체 공개 이벤트 연계</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m3c)">3</div>
+              <div class="dpw-title">숨은 기여 찾기</div><div class="dpw-subtitle">익명 투표 MVP 발굴</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">"묵묵히 기여하거나 실패 후 재도전하는 팀원" 익명 투표</div>
+                <div class="dpw-step" data-n="2">기한 종료 → 최다 득표자 공개 · 팀내 알림 · 축하 댓글</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m3c)">4</div>
+              <div class="dpw-title">칭찬 타임캡슐 + 기여자 보상</div><div class="dpw-subtitle">12월 개봉 예약</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">Week 2 칭찬 메시지 → 타임캡슐 봉인, 12월 전사 공개</div>
+                <div class="dpw-step" data-n="2">Week 3 기여자에게 팀장이 공개적으로 선물 증정 (회의/퇴근 전)</div>
+                <div class="dpw-step" data-n="3">선물 증정 사진 업로드 → 팀내 공유</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-exec-row">
+          <button class="dp-exec-btn" style="background:var(--m3c)" onclick="alert(&#39;실행 페이지는 별도 URL로 연결됩니다.&#39;)">▶ 실행 페이지 열기</button>
+          <span class="dp-exec-note">실제 프로그램 실행 시 해당 버튼으로 이동합니다</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAIL M4 -->
+    <div class="detail-wrapper" id="detail-m4">
+      <div class="detail-panel" id="dp-m4">
+        <div class="dp-header">
+          <div class="dp-month-label">Month 4 · 10월</div>
+          <div class="dp-title" style="color:var(--m4c)">성장과 육성</div>
+          <div class="dp-keymsg" style="border-left-color:var(--m4c)">"회사와 함께 구성원도 성장합니다"</div>
+        </div>
+        <div class="dp-weeks">
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m4c)">1</div>
+              <div class="dpw-title">리더 스토리 — 성장 루트 조언</div><div class="dpw-subtitle">경험·추천 자료 공유</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">본부장→실장→팀장 순 성장 경험 + 추천 루트(책·멘토 등) 메시지 작성</div>
+                <div class="dpw-step" data-n="2">전 구성원 공개 · 좋아요·댓글 기능</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m4c)">2</div>
+              <div class="dpw-title">성장 목표 릴레이</div><div class="dpw-subtitle">"올해 나의 성장 목표"</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">팀장 1명 지목 → 성장 목표 작성 → 릴레이 방식 전원 완료</div>
+                <div class="dpw-step" data-n="2">완료 후 익명 전체 공개 · 좋아요 기능</div>
+                <div class="dpw-step" data-n="3"><strong>성장 타임캡슐</strong> 저장 → 12월 전체 공개 이벤트 연계</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m4c)">3</div>
+              <div class="dpw-title">나의 베스트 지식 공유</div><div class="dpw-subtitle">"나는 OOO에 자신있습니다"</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">가장 잘 알고 자신 있는 것 1가지 익명 작성</div>
+                <div class="dpw-step" data-n="2">기한 종료 → 전체 공개 + <strong>"함께 알고 싶어요!"</strong> 익명 투표</div>
+                <div class="dpw-step" data-n="3">최다 득표 강조 표시 · 팀장 권한으로 추가 선정 가능</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m4c)">4</div>
+              <div class="dpw-title">베스트 지식 세미나</div><div class="dpw-subtitle">당사자 주도 팀 내 세미나</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">최다 득표자가 팀원에게 지식 공유 세미나 주도</div>
+                <div class="dpw-step" data-n="2">팀장 추가 선정으로 다수 발표 진행 가능</div>
+                <div class="dpw-step" data-n="3">세미나 진행 사진 업로드 → 전사 공유</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-exec-row">
+          <button class="dp-exec-btn" style="background:var(--m4c)" onclick="alert(&#39;실행 페이지는 별도 URL로 연결됩니다.&#39;)">▶ 실행 페이지 열기</button>
+          <span class="dp-exec-note">실제 프로그램 실행 시 해당 버튼으로 이동합니다</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M5 card -->
+    <div class="month-card">
+      <div class="mc-bar" style="background:var(--m5c)"></div>
+      <div class="mc-body">
+        <div class="mc-top">
+          <span class="mc-badge" style="background:var(--m5l);color:var(--m5b);border:1px solid #FECACA">MONTH 5</span>
+          <span class="mc-period">11월</span>
+        </div>
+        <div class="mc-title" style="color:var(--m5c)">협업과 시너지</div>
+        <div class="mc-keymsg" style="border-left-color:var(--m5c)">"함께 더 큰 성과를 만듭니다"</div>
+        <div class="mc-weeks">
+          <span class="mc-chip" style="background:var(--m5l);color:var(--m5b);border-color:#FECACA">W1 리더 스토리</span>
+          <span class="mc-chip" style="background:var(--m5l);color:var(--m5b);border-color:#FECACA">W2 위기 스토리텔링</span>
+          <span class="mc-chip" style="background:var(--m5l);color:var(--m5b);border-color:#FECACA">W3 협업 플러팅</span>
+          <span class="mc-chip" style="background:var(--m5l);color:var(--m5b);border-color:#FECACA">W4 팀 매칭</span>
+        </div>
+        <button class="mc-btn" style="background:var(--m5c)" onclick="toggleDetail(&#39;m5&#39;)"><span id="lbl-m5">상세 내용 보기 ↓</span></button>
+      </div>
+    </div>
+
+    <!-- empty for grid -->
+    <div></div>
+
+    <!-- DETAIL M5 -->
+    <div class="detail-wrapper" id="detail-m5">
+      <div class="detail-panel" id="dp-m5">
+        <div class="dp-header">
+          <div class="dp-month-label">Month 5 · 11월</div>
+          <div class="dp-title" style="color:var(--m5c)">협업과 시너지</div>
+          <div class="dp-keymsg" style="border-left-color:var(--m5c)">"함께 더 큰 성과를 만듭니다"</div>
+        </div>
+        <div class="dp-weeks">
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m5c)">1</div>
+              <div class="dpw-title">리더 스토리 — 협업 성공 경험</div><div class="dpw-subtitle">협업 노하우 공유</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">본부장→실장→팀장 순 협업 성공 사례·시너지 노하우 메시지 작성</div>
+                <div class="dpw-step" data-n="2">전 구성원 공개 · 좋아요·댓글 기능</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m5c)">2</div>
+              <div class="dpw-title">위기 스토리텔링</div><div class="dpw-subtitle">팀 릴레이 이야기 완성</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">상황 ① — "AI가 팀 업무 대체 시 어떻게 대처할까?" 또는</div>
+                <div class="dpw-step" data-n="2">상황 ② — "지리산 등반 중 폭우로 고립된 상황에서 어떻게 대처할까?"</div>
+                <div class="dpw-step" data-n="3">팀장이 상황 선택 → 다음 이야기 1줄 작성 → 지목 → 릴레이 전원 완료</div>
+                <div class="dpw-step" data-n="4">누적 스토리 전체 보기 → 완성 시 공개</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m5c)">3</div>
+              <div class="dpw-title">협업 플러팅</div><div class="dpw-subtitle">전사 실시간 팀 선호도 랭킹</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">"앞으로 허물없이 썸타고 싶은 팀은?(잘지내고 싶은 팀) 전사 팀 중 선택"</div>
+                <div class="dpw-step" data-n="2">실시간 차트로 선호 팀 랭킹 공개 · 상호 매칭 결과 자동 생성</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-week">
+            <div class="dpw-header" onclick="toggleWeek(this)">
+              <div class="dpw-num" style="background:var(--m5c)">4</div>
+              <div class="dpw-title">우리 잘해봐요 — 팀 매칭 &amp; 런치</div><div class="dpw-subtitle">매칭 팀 간 점심 약속</div>
+              <div class="dpw-toggle">⌄</div>
+            </div>
+            <div class="dpw-body">
+              <div class="dpw-steps">
+                <div class="dpw-step" data-n="1">최다 지목 팀 팀장 → 지목 팀에 답장 메시지 발송</div>
+                <div class="dpw-step" data-n="2">상호 매칭 팀 리스트 해당 팀에만 공개</div>
+                <div class="dpw-step" data-n="3">매칭 팀 팀장끼리 점심 일정 조율 → 해당 팀에만 일정 공개</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-exec-row">
+          <button class="dp-exec-btn" style="background:var(--m5c)" onclick="alert(&#39;실행 페이지는 별도 URL로 연결됩니다.&#39;)">▶ 실행 페이지 열기</button>
+          <span class="dp-exec-note">실제 프로그램 실행 시 해당 버튼으로 이동합니다</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WRAPUP -->
+<section class="main-section section-block" id="wrapup">
+  <div class="sec-title">12월 — 랩업</div>
+  <div class="wrapup-card">
+    <div class="wu-label">December · Wrap-Up</div>
+    <div class="wu-title">5개월간의 HIGH-5 여정, 완성</div>
+    <div class="wu-desc">5개월간 쌓인 모든 활동이 하나의 대시보드로 통합됩니다.<br>봉인된 타임캡슐이 열리고, 팀과 개인의 성장이 전사에 공개됩니다.</div>
+    <div class="wu-grid">
+      <div class="wu-item">🏆 <span>전사 최종 랭킹</span> 공개 &amp; 시상</div>
+      <div class="wu-item">💌 <span>칭찬 타임캡슐</span> 개봉 이벤트</div>
+      <div class="wu-item">🌱 <span>성장 타임캡슐</span> 개봉 이벤트</div>
+      <div class="wu-item">📸 <span>5개월 사진</span> 파노라마 상영</div>
+      <div class="wu-item">📊 <span>5대 영역</span> 실천율 발표</div>
+      <div class="wu-item">✍️ <span>전사 소감</span> 댓글 공유</div>
+    </div>
+    <button class="wu-exec-btn" onclick="alert(&#39;실행 페이지는 별도 URL로 연결됩니다.&#39;)">▶ 실행 페이지 열기</button>
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
+function openMonth(id){goTo('months');setTimeout(()=>toggleDetail(id,true),320)}
+
+const opened={};
+function toggleDetail(id,force){
+  const panel=document.getElementById('dp-'+id);
+  const lbl=document.getElementById('lbl-'+id);
+  if(!panel)return;
+  ['m1','m2','m3','m4','m5'].forEach(m=>{
+    if(m!==id){
+      const p=document.getElementById('dp-'+m);
+      const l=document.getElementById('lbl-'+m);
+      if(p)p.classList.remove('open');
+      if(l)l.textContent='상세 내용 보기 ↓';
+      opened[m]=false;
+    }
+  });
+  const isOpen=force?false:opened[id];
+  if(isOpen){
+    panel.classList.remove('open');
+    if(lbl)lbl.textContent='상세 내용 보기 ↓';
+    opened[id]=false;
+  } else {
+    panel.classList.add('open');
+    if(lbl)lbl.textContent='닫기 ↑';
+    opened[id]=true;
+    setTimeout(()=>{
+      const d=document.getElementById('detail-'+id);
+      if(d)d.scrollIntoView({behavior:'smooth',block:'start'});
+    },80);
+  }
+}
+
+function toggleWeek(header){
+  const body=header.nextElementSibling;
+  const tog=header.querySelector('.dpw-toggle');
+  const open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  header.classList.toggle('open',!open);
+}
+</script>
+
+
+</body></html>
